@@ -1,29 +1,13 @@
-<!DOCTYPE html>
+{% extends 'blog/base.html' %}
 
-<html>
-    <head>
-        <title>Blog da Marcelinha</title>
-    </head>        
-    <body> 
-        <header>
-            <h1><a href="/">Marcelinha fez um Django Girls Blog</a></h1>
-        </header>
-            {% for post in posts %}
-                <article>
-                    <time>published: {{ post.published_date}}</time>
-                    <h2><a href="">{{ post.title }}</a><h2>
-                </article>
-            {% endfor %}
-        <article>
-            <time>published: 07.10.2014, 14:14</time>
-            <h2><a href="">My first post is the best post</a></h2>
-            <p>lalalala lolololo</p>
+{% block content %}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </article>
-        <article>
-            <time>published: 07.10.2014, 11:14</time>
-            <h2><a href="">My second post post is the now the best post</a></h2>
-            <p>Hi there</p>
-            <p>It is working, bitch! congrats</p>
-        </article>
-    </body>
-</html>      
+    {% endfor %}
+{% endblock %}
